@@ -696,6 +696,34 @@ html:not(.js) .nav-toggle { display: none; }
   background: linear-gradient(180deg, rgba(16, 185, 129, 0.10), rgba(255, 255, 255, 0.04));
   box-shadow: 0 0 50px rgba(16, 185, 129, 0.18);
 }
+.price-card-wide {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding: 2rem 1.9rem;
+  border-color: var(--border-strong);
+  background: linear-gradient(120deg, rgba(45, 212, 191, 0.09), rgba(255, 255, 255, 0.03));
+}
+.price-card-wide .tier-for { margin-bottom: 1rem; }
+.tier-features-wide { margin-bottom: 0; }
+.wide-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
+  min-width: 180px;
+}
+.wide-cta .tier-price { margin-bottom: 0; text-align: center; }
+.wide-cta .tier-price .amount { font-size: 2.1rem; }
+@media (min-width: 760px) {
+  .price-card-wide { flex-direction: row; align-items: center; justify-content: space-between; }
+  .tier-features-wide {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.6rem;
+  }
+}
 .popular-badge {
   position: absolute;
   top: -13px;
