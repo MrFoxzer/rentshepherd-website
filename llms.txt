@@ -1,0 +1,24 @@
+# RentShepherd
+
+> RentShepherd is an all-in-one AI property management platform for landlords and property management companies — from a single rental house to whole portfolios of buildings. It answers tenant calls and texts 24/7, triages repair requests (separating genuine emergencies from routine fixes), turns tenant reports into tracked work orders with photos, collects rent automatically through a renter portal, preps lease renewals at 90/60/30 days, and produces monthly owner reports — all in one secured dashboard. The landlord keeps control: anything that commits money or makes a promise waits for a one-tap owner approval. RentShepherd is a cloud platform available across the United States (and to landlords worldwide); it is currently in early access with a 14-day free trial, no card required.
+
+## Pricing
+
+- Starter: $29/mo — up to 3 units; 24/7 tenant messaging AI, rent reminders, tenant work orders + maintenance inbox
+- Growth: $79/mo (most popular) — up to 12 units; adds 24/7 call answering, renter portal + automatic rent payments, repair triage + vendor dispatch drafts, owner reports
+- Portfolio: $149/mo — up to 30 units; adds multi-property dashboard, lease renewal automation, priority support
+- Enterprise: custom pricing — unlimited units for property management companies and large portfolios; per-building routing, team seats, replies under the company's name
+- Every plan starts with a 14-day free trial, no card required. Flat monthly pricing — not a percentage of rent (traditional property managers typically charge 8-10% of monthly rent).
+
+## Key pages
+
+- [Home](https://rentshepherd.com/): product overview, features, how it works, pricing, FAQ
+- [Blog](https://rentshepherd.com/blog/): practical guides for self-managing landlords
+- [How Much Does a Property Manager Cost?](https://rentshepherd.com/blog/how-much-does-a-property-manager-cost): typical PM fee structures and the 8-10% math, with a worked example and the DIY + AI alternative
+- [The Small Landlord's Complete Self-Management System](https://rentshepherd.com/blog/small-landlord-self-management-system): rent collection, maintenance, renewals, and records — and where automation fits
+- [Tenant Emergency at 2am](https://rentshepherd.com/blog/tenant-emergency-at-2am): step-by-step landlord triage for water, gas, electrical, no-heat, and security emergencies
+- [Locations](https://rentshepherd.com/locations/): service-area pages for all 50 US states and 25 major rental markets
+
+## Contact
+
+- Early access / free trial signup: the waitlist form at https://rentshepherd.com/#waitlist (also the contact route for Enterprise and property management companies)

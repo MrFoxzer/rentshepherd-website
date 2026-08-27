@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Much Does a Property Manager Cost? The 8&ndash;10% Math for Landlords</title>
+  <meta name="description" content="Property managers typically charge 8-10% of monthly rent, plus leasing fees, renewal fees, and maintenance markups. Here's the full fee stack, a worked example on a $1,800/mo rental, and what the DIY + AI alternative costs.">
+  <link rel="canonical" href="https://rentshepherd.com/blog/how-much-does-a-property-manager-cost">
+  <meta name="theme-color" content="#040a07">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://rentshepherd.com/blog/how-much-does-a-property-manager-cost">
+  <meta property="og:site_name" content="RentShepherd">
+  <meta property="og:title" content="How Much Does a Property Manager Cost? The 8&ndash;10% Math for Landlords">
+  <meta property="og:description" content="The full property management fee stack — management fee, leasing fee, renewal fee, maintenance markup — with a worked example and the DIY + AI alternative.">
+  <meta property="og:image" content="https://rentshepherd.com/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="2026-08-27">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Much Does a Property Manager Cost? The 8&ndash;10% Math for Landlords">
+  <meta name="twitter:description" content="The full property management fee stack — management fee, leasing fee, renewal fee, maintenance markup — with a worked example and the DIY + AI alternative.">
+  <meta name="twitter:image" content="https://rentshepherd.com/images/og-default.png">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23071009'/%3E%3Cpath d='M24 7 41 20v19a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V20Z' fill='none' stroke='%2334d399' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M20 35V20a5 5 0 0 1 10 0v2.5' fill='none' stroke='%232dd4bf' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .crumbs{font-size:.85rem;color:var(--muted);display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+    .crumbs a{color:var(--muted)}
+    .crumbs a:hover{color:var(--emerald)}
+    .crumbs .sep{color:var(--faint)}
+    .post-hero{padding:7.2rem 0 0;max-width:840px}
+    .post-hero h1{font-size:clamp(1.9rem,4.2vw,2.8rem);line-height:1.16;margin:.65rem 0 1rem}
+    .post-meta{display:flex;gap:.45rem .9rem;flex-wrap:wrap;align-items:center;color:var(--faint);font-size:.9rem}
+    .post-body{max-width:840px;padding:1.4rem 0 3.5rem}
+    .post-body>*+*{margin-top:1.05rem}
+    .post-body h2{font-size:clamp(1.35rem,2.8vw,1.8rem);margin-top:2.7rem}
+    .post-body h3{font-size:1.13rem;margin-top:1.9rem}
+    .post-body p,.post-body li{color:var(--muted);max-width:74ch}
+    .post-body ul,.post-body ol{padding-left:1.35rem;display:grid;gap:.5rem}
+    .post-body strong{color:var(--text)}
+    .post-body a{color:var(--emerald)}
+    .answer-box{border:1px solid var(--border-strong);border-radius:var(--radius);background:var(--surface);padding:1.3rem 1.5rem;margin-top:1.6rem}
+    .answer-box p{margin:0;max-width:74ch;color:var(--muted)}
+    .answer-box .tag{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:.55rem;font-weight:600}
+    .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px;background:var(--surface);margin-top:1.4rem}
+    table.comp{width:100%;min-width:620px;border-collapse:collapse;font-size:.94rem}
+    .comp th{text-align:left;font-family:var(--font-head);color:var(--text);padding:.75rem 1rem;border-bottom:1px solid var(--border-strong)}
+    .comp td{padding:.7rem 1rem;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top}
+    .comp tr:last-child td{border-bottom:none}
+    .post-cta{border:1px solid var(--border-strong);border-radius:var(--radius);background:linear-gradient(160deg,rgba(52,211,153,.09),rgba(45,212,191,.04));padding:1.6rem 1.7rem;margin-top:2.6rem}
+    .post-cta h2,.post-cta h3{margin:0 0 .5rem;font-size:1.25rem}
+    .post-cta p{margin:0 0 1.1rem}
+    .post-cta .btn{margin:0 .6rem .5rem 0}
+    .faq-block{display:grid;gap:.85rem;margin-top:1.3rem}
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rentshepherd.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://rentshepherd.com/blog/"},
+          {"@type": "ListItem", "position": 3, "name": "How Much Does a Property Manager Cost?", "item": "https://rentshepherd.com/blog/how-much-does-a-property-manager-cost"}
+        ]
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://rentshepherd.com/blog/how-much-does-a-property-manager-cost#article",
+        "headline": "How Much Does a Property Manager Cost? The 8-10% Math for Landlords",
+        "description": "Property managers typically charge 8-10% of monthly rent, plus leasing fees, renewal fees, and maintenance markups. Full fee stack, a worked example, and the DIY + AI alternative.",
+        "url": "https://rentshepherd.com/blog/how-much-does-a-property-manager-cost",
+        "mainEntityOfPage": "https://rentshepherd.com/blog/how-much-does-a-property-manager-cost",
+        "datePublished": "2026-08-27",
+        "dateModified": "2026-08-27",
+        "image": "https://rentshepherd.com/images/og-default.png",
+        "author": {"@type": "Organization", "name": "RentShepherd", "url": "https://rentshepherd.com/"},
+        "publisher": {"@type": "Organization", "@id": "https://rentshepherd.com/#org", "name": "RentShepherd", "url": "https://rentshepherd.com/"},
+        "isPartOf": {"@type": "Blog", "@id": "https://rentshepherd.com/blog/#blog", "name": "RentShepherd Blog", "url": "https://rentshepherd.com/blog/"}
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is a property manager's fee charged on collected rent or scheduled rent?",
+            "acceptedAnswer": {"@type": "Answer", "text": "It depends on the contract, and the difference matters. A fee on collected rent means the manager earns nothing during vacancy or non-payment, which aligns their incentives with yours. A fee on scheduled rent is owed even when the unit sits empty. Before signing, read the agreement and ask directly which basis applies."}
+          },
+          {
+            "@type": "Question",
+            "name": "Are property management fees negotiable?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Often, yes — especially the leasing fee, the renewal fee, and the percentage rate for owners bringing multiple units. Managers price for one-unit owners by default; if you have several doors or a low-maintenance property, ask. The percentage fee is usually more negotiable at larger portfolio sizes."}
+          },
+          {
+            "@type": "Question",
+            "name": "Are property management fees tax deductible?",
+            "acceptedAnswer": {"@type": "Answer", "text": "In the US, property management fees are generally deductible as an ordinary rental expense, which softens their real cost — but a deduction only reduces the tax on the money, it does not return it. Confirm your specific situation with a tax professional."}
+          },
+          {
+            "@type": "Question",
+            "name": "Can software fully replace a property manager?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Software can replace the manager's routine layer — answering tenants, logging and triaging repairs, tracking rent, and flagging renewals — which is most of the day-to-day work. It cannot show up in person, hold vendor relationships for you, or make judgment calls. A DIY landlord with AI on the front line keeps those decisions and pays a flat monthly price instead of a percentage of rent."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Aurora background -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob aurora-emerald"></div>
+    <div class="aurora-blob aurora-teal"></div>
+    <div class="aurora-blob aurora-sea"></div>
+  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="site-nav" id="top">
+    <div class="nav-inner container">
+      <a class="brand" href="/" aria-label="RentShepherd home">
+        <svg class="brand-mark" viewBox="0 0 48 48" width="34" height="34" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="mark-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#34d399"/>
+              <stop offset="1" stop-color="#2dd4bf"/>
+            </linearGradient>
+          </defs>
+          <path d="M24 6 42.5 20v19.5a3 3 0 0 1-3 3h-31a3 3 0 0 1-3-3V20Z" fill="none" stroke="url(#mark-grad)" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M19.5 35.5V19.5a6 6 0 0 1 12 0v3" fill="none" stroke="url(#mark-grad)" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name">Rent<em>Shepherd</em></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How it works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/#faq">FAQ</a>
+        <a class="btn btn-primary btn-nav" href="/#waitlist">Start free trial</a>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="post-hero container">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/blog/">Blog</a><span class="sep">/</span><span aria-current="page">Property manager cost</span></nav>
+        <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> Costs &amp; pricing</p>
+        <h1>How much does a property manager cost? The 8&ndash;10% math for landlords</h1>
+        <p class="post-meta"><time datetime="2026-08-27">August 27, 2026</time> · By the RentShepherd team · 8 min read</p>
+      </header>
+
+      <div class="post-body container">
+        <div class="answer-box">
+          <span class="tag">The short answer</span>
+          <p>Property managers typically charge <strong>8&ndash;10% of monthly rent</strong> as an ongoing management fee — but that headline number is only part of the bill. Most also charge a <strong>leasing fee</strong> when they place a new tenant (often 50&ndash;100% of one month&rsquo;s rent), and many add renewal fees, maintenance markups, and setup or inspection charges. Once you stack the full fee schedule, the true cost of professional management often lands well above the quoted percentage. Below: every common fee, a worked example on an $1,800/mo rental, and what the do-it-yourself alternative costs.</p>
+        </div>
+
+        <h2>The full fee stack, not just the percentage</h2>
+        <p>When landlords compare property managers, they usually compare the monthly percentage. Managers know this, which is why the percentage is the number on the website and everything else lives in the management agreement. Here are the fees you&rsquo;ll commonly find, stated as the typical ranges you&rsquo;ll see quoted — actual numbers vary by market and company, so always read the agreement itself.</p>
+
+        <div class="table-wrap">
+          <table class="comp">
+            <thead>
+              <tr><th>Fee</th><th>Typical range</th><th>When you pay it</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Monthly management fee</strong></td><td>8&ndash;10% of rent (flat-fee firms exist too)</td><td>Every month, sometimes even during vacancy — check whether it&rsquo;s charged on <em>collected</em> or <em>scheduled</em> rent</td></tr>
+              <tr><td><strong>Leasing / tenant-placement fee</strong></td><td>50&ndash;100% of one month&rsquo;s rent</td><td>Each time a new tenant signs</td></tr>
+              <tr><td><strong>Lease renewal fee</strong></td><td>A flat charge or a fraction of one month&rsquo;s rent</td><td>Each time an existing tenant renews</td></tr>
+              <tr><td><strong>Maintenance markup</strong></td><td>Commonly around 10% added to vendor invoices</td><td>Every repair the manager coordinates</td></tr>
+              <tr><td><strong>Setup / onboarding fee</strong></td><td>A one-time flat charge</td><td>When you sign on</td></tr>
+              <tr><td><strong>Vacancy, inspection, or eviction-coordination fees</strong></td><td>Varies widely; some firms charge, some don&rsquo;t</td><td>Situational — these are the ones to ask about directly</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>None of this is a scandal — running a management company has real costs, and the fee stack is how those costs get covered. The point is simply that <strong>the percentage is a floor, not the price</strong>.</p>
+
+        <h2>A worked example: one $1,800/mo single-family rental</h2>
+        <p>Let&rsquo;s make the math concrete. These are our stated assumptions, not statistics: a single-family rental at <strong>$1,800/mo</strong>, a manager charging <strong>8&ndash;10% of collected rent</strong>, a tenant who turns over <strong>every two years</strong> with a leasing fee of <strong>75% of one month&rsquo;s rent</strong>, a <strong>$300 renewal fee</strong> in the in-between years, and <strong>$1,500/yr in repairs</strong> carrying a 10% coordination markup. Change any assumption and the total moves — the structure of the math is the useful part.</p>
+        <ul>
+          <li><strong>Management fee:</strong> $144&ndash;$180/mo &rarr; <strong>$1,728&ndash;$2,160 per year</strong></li>
+          <li><strong>Leasing fee:</strong> $1,350 every two years &rarr; <strong>about $675 per year</strong>, averaged</li>
+          <li><strong>Renewal fee:</strong> $300 every other year &rarr; <strong>about $150 per year</strong>, averaged</li>
+          <li><strong>Maintenance markup:</strong> 10% of $1,500 &rarr; <strong>$150 per year</strong></li>
+        </ul>
+        <p>Total: roughly <strong>$2,700&ndash;$3,140 per year</strong> on $21,600 of annual rent — call it <strong>12.5&ndash;14.5% of collected rent</strong> under these assumptions, not the 8&ndash;10% on the brochure. On a duplex or a small portfolio, multiply accordingly: a landlord collecting $6,000/mo across several units pays $480&ndash;$600 <em>every month</em> in management fees alone before any of the per-event fees land.</p>
+
+        <h2>What you actually get for the money</h2>
+        <p>To be fair to good managers, that fee buys real work: marketing and showing the unit, screening applicants, collecting rent, fielding every tenant call, coordinating repairs through their vendor network, handling notices, and keeping you on the right side of local rules. In markets with layered regulations — think <a href="/locations/new-york-ny">New York</a> or <a href="/locations/chicago-il">Chicago</a> — that local expertise can genuinely matter.</p>
+        <p>But look at where the hours actually go. Most of a manager&rsquo;s month on your property is <strong>routine communication and coordination</strong>: answering &ldquo;when is rent due,&rdquo; logging a dripping faucet, scheduling the plumber, sending the late-rent reminder, noting the lease that expires in 90 days. It is necessary work — and it is precisely the work that software has become very good at.</p>
+
+        <div class="post-cta">
+          <h3>See the math for your own portfolio</h3>
+          <p>RentShepherd handles the routine layer — 24/7 tenant answering, repair triage, rent tracking, renewal prep — for a flat $29&ndash;$149/mo, not a percentage of your rent. Every plan starts with a 14-day free trial, no card required.</p>
+          <a class="btn btn-primary" href="/#pricing">Compare plans</a>
+          <a class="btn btn-ghost" href="/#waitlist">Start free trial</a>
+        </div>
+
+        <h2>The DIY + AI alternative</h2>
+        <p>Self-managing used to mean being the front line yourself: every text, every 2am call, every awkward rent conversation. That trade-off has changed. An AI property manager like <a href="/">RentShepherd</a> takes the routine layer — answering tenants around the clock, triaging repairs into tracked work orders, collecting rent automatically, prepping renewals at 90/60/30 days — while every decision that commits your money still waits for your one-tap approval.</p>
+
+        <div class="table-wrap">
+          <table class="comp">
+            <thead>
+              <tr><th>&nbsp;</th><th>Traditional property manager</th><th>DIY + RentShepherd</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Cost basis</strong></td><td>8&ndash;10% of rent + per-event fees; grows with your rent</td><td>Flat $29&ndash;$149/mo by unit count; <a href="/#pricing">Enterprise</a> for larger portfolios</td></tr>
+              <tr><td><strong>On our example rental</strong></td><td>Roughly $2,700&ndash;$3,140/yr (assumptions above)</td><td>$348/yr on Starter ($29/mo, up to 3 units)</td></tr>
+              <tr><td><strong>Tenant calls &amp; texts</strong></td><td>Office hours + the manager&rsquo;s after-hours line</td><td>Answered by AI in seconds, 24/7, every message logged</td></tr>
+              <tr><td><strong>Repairs</strong></td><td>Manager picks the vendor; markup may apply</td><td>Triage + a drafted dispatch to <em>your</em> vendor; you approve with one tap</td></tr>
+              <tr><td><strong>Who decides</strong></td><td>Manager, within the authority the contract grants</td><td>You — approvals stay on your phone</td></tr>
+              <tr><td><strong>Showings &amp; in-person work</strong></td><td>Included</td><td>Still yours (or a local service you hire per task)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The honest gap is that last row: software will not walk a prospective tenant through the unit or meet the roofer on-site. Many self-managers cover that with an occasional hourly local service — and keep the thousands per year the percentage model would have cost. This trade works the same whether your rental is in <a href="/locations/minneapolis-mn">Minneapolis</a>, <a href="/locations/dallas-tx">Dallas</a>, or <a href="/locations/tampa-fl">Tampa</a> — flat software pricing doesn&rsquo;t care what your local rents are, which is exactly why it beats a percentage hardest in high-rent markets.</p>
+
+        <h2>When a traditional manager is still the right call</h2>
+        <p>A percentage manager can absolutely be worth it. Reasonable cases: you own in a heavily regulated market and want a professional carrying the compliance risk; you&rsquo;re a fully hands-off investor who never wants a decision, not even a one-tap one; the property is far away <em>and</em> needs frequent in-person attention; or your time is simply worth more than the fee. If that&rsquo;s you, hire well: interview several firms, get the complete fee schedule in writing, and ask what happens during vacancy.</p>
+        <p>For everyone else — the accidental landlord, the nights-and-weekends portfolio, the owner of a small building — the routine layer is the part that burns you out, and it&rsquo;s now the cheapest part to solve.</p>
+
+        <h2>FAQ: property management fees</h2>
+        <div class="faq-block">
+          <details class="glass-card faq-item">
+            <summary>Is the fee charged on collected rent or scheduled rent?</summary>
+            <div class="faq-body"><p>It depends on the contract, and the difference matters. A fee on <strong>collected</strong> rent means the manager earns nothing when the unit is vacant or the tenant doesn&rsquo;t pay — their incentives align with yours. A fee on <strong>scheduled</strong> rent is owed even on an empty unit. Ask directly, and get the answer in the agreement.</p></div>
+          </details>
+          <details class="glass-card faq-item">
+            <summary>Are property management fees negotiable?</summary>
+            <div class="faq-body"><p>Often, yes — especially the leasing fee, the renewal fee, and the percentage for owners bringing multiple units. Managers price for one-unit owners by default; if you have several doors or a newer, low-maintenance property, ask.</p></div>
+          </details>
+          <details class="glass-card faq-item">
+            <summary>Are management fees tax deductible?</summary>
+            <div class="faq-body"><p>In the US, property management fees are generally deductible as an ordinary rental expense, which softens their real cost — but a deduction only reduces the tax on the money; it doesn&rsquo;t give the money back. Confirm your situation with a tax professional.</p></div>
+          </details>
+          <details class="glass-card faq-item">
+            <summary>Can software fully replace a property manager?</summary>
+            <div class="faq-body"><p>It can replace the <strong>routine layer</strong> — tenant communication, repair intake and triage, rent tracking, renewal timelines — which is most of the day-to-day work. It can&rsquo;t show up in person or make judgment calls for you. That&rsquo;s the deal: you keep the decisions and the percentage; the software does the interruptions.</p></div>
+          </details>
+        </div>
+
+        <div class="post-cta">
+          <h3>Keep the 8&ndash;10%. Hand off the 2am part.</h3>
+          <p>Join the RentShepherd early access list — 14-day free trial on every plan, no card required. From $29/mo for your first rentals to <a href="/#pricing">Enterprise</a> for whole portfolios.</p>
+          <a class="btn btn-primary" href="/#waitlist">Join the early access list</a>
+          <a class="btn btn-ghost" href="/blog/">More guides</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="RentShepherd home">
+          <svg class="brand-mark" viewBox="0 0 48 48" width="30" height="30" aria-hidden="true" focusable="false">
+            <path d="M24 6 42.5 20v19.5a3 3 0 0 1-3 3h-31a3 3 0 0 1-3-3V20Z" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linejoin="round"/>
+            <path d="M19.5 35.5V19.5a6 6 0 0 1 12 0v3" fill="none" stroke="#2dd4bf" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-name">Rent<em>Shepherd</em></span>
+        </a>
+        <p class="footer-tag">The AI property manager for landlords and property management companies — one rental house to whole portfolios. It does the 2am part — you keep the control.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Product">
+        <h3>Product</h3>
+        <a href="/#features">Features</a>
+        <a href="/#how-it-works">How it works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Get started">
+        <h3>Get started</h3>
+        <a href="/#faq">FAQ</a>
+        <a href="/#waitlist">Early access</a>
+        <a href="/locations/">Service areas</a>
+      </nav>
+    </div>
+
+    <div class="container footer-legal">
+      <p>&copy; 2026 RentShepherd. All rights reserved.</p>
+      <p>Designed &amp; Built by <a href="https://stylemarking.com" rel="noopener">StyleMarking.com</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
