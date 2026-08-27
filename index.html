@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RentShepherd — AI Property Manager for Small Landlords</title>
+  <meta name="description" content="RentShepherd is the AI property manager for landlords with 1–25 units. It answers tenant texts and calls 24/7, triages repairs, tracks rent, and preps lease renewals — you approve everything with one tap. From $29/mo.">
+  <link rel="canonical" href="https://rentshepherd.com/">
+  <meta name="theme-color" content="#040a07">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rentshepherd.com/">
+  <meta property="og:site_name" content="RentShepherd">
+  <meta property="og:title" content="RentShepherd — AI Property Manager for Small Landlords">
+  <meta property="og:description" content="Answers tenant texts and calls 24/7, triages repairs, tracks rent, and preps renewals. You keep control — RentShepherd does the 2am part. 14-day free trial, no card required.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RentShepherd — AI Property Manager for Small Landlords">
+  <meta name="twitter:description" content="The AI property manager for 1–25 unit landlords. Tenant messaging, repair triage, rent tracking, renewals — with one-tap owner approvals. From $29/mo.">
+
+  <!-- Favicon: brand mark (crook-in-house) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23071009'/%3E%3Cpath d='M24 7 41 20v19a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V20Z' fill='none' stroke='%2334d399' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M20 35V20a5 5 0 0 1 10 0v2.5' fill='none' stroke='%232dd4bf' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://rentshepherd.com/#org",
+        "name": "RentShepherd",
+        "url": "https://rentshepherd.com/",
+        "description": "AI property manager for small landlords with 1–25 units."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "RentShepherd",
+        "url": "https://rentshepherd.com/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "AI property manager that answers tenant texts and calls 24/7, triages repair requests, drafts vendor dispatches, sends rent reminders, tracks payments, manages lease renewal timelines, and delivers monthly owner reports — with landlord approvals on every action.",
+        "publisher": { "@id": "https://rentshepherd.com/#org" },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "price": "29",
+            "priceCurrency": "USD",
+            "description": "Up to 3 units. Tenant messaging AI, rent reminders, maintenance inbox. 14-day free trial."
+          },
+          {
+            "@type": "Offer",
+            "name": "Growth",
+            "price": "79",
+            "priceCurrency": "USD",
+            "description": "Up to 12 units. 24/7 call answering, repair triage and vendor dispatch drafts, owner reports. 14-day free trial."
+          },
+          {
+            "@type": "Offer",
+            "name": "Portfolio",
+            "price": "149",
+            "priceCurrency": "USD",
+            "description": "Up to 30 units. Multi-property dashboard, lease renewal automation, priority support. 14-day free trial."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Aurora background -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob aurora-emerald"></div>
+    <div class="aurora-blob aurora-teal"></div>
+    <div class="aurora-blob aurora-sea"></div>
+  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="site-nav" id="top">
+    <div class="nav-inner container">
+      <a class="brand" href="#top" aria-label="RentShepherd home">
+        <svg class="brand-mark" viewBox="0 0 48 48" width="34" height="34" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="mark-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#34d399"/>
+              <stop offset="1" stop-color="#2dd4bf"/>
+            </linearGradient>
+          </defs>
+          <path d="M24 6 42.5 20v19.5a3 3 0 0 1-3 3h-31a3 3 0 0 1-3-3V20Z" fill="none" stroke="url(#mark-grad)" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M19.5 35.5V19.5a6 6 0 0 1 12 0v3" fill="none" stroke="url(#mark-grad)" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name">Rent<em>Shepherd</em></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary btn-nav" href="#waitlist">Start free trial</a>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow reveal"><span class="pulse-dot" aria-hidden="true"></span> AI property manager for 1–25 unit landlords</p>
+        <h1 class="reveal">Your rentals, <span class="grad-text">watched&nbsp;over</span> 24/7.</h1>
+        <p class="hero-sub reveal">RentShepherd answers tenant texts and calls around the clock, triages repairs, chases rent, and preps lease renewals. You approve every action with one tap — it just does the 2am part.</p>
+        <div class="hero-ctas reveal">
+          <a class="btn btn-primary btn-lg" href="#waitlist">Start your 14-day free trial</a>
+          <a class="btn btn-ghost btn-lg" href="#how-it-works">See how it works</a>
+        </div>
+        <p class="hero-note reveal">No card required · Cancel anytime · A fraction of the 8–10% of rent traditional managers charge</p>
+      </div>
+
+      <!-- Product mockup: glass phone + approval card -->
+      <div class="hero-mockup reveal" role="img" aria-label="Phone mockup: a tenant texts that their water heater is leaking at 2:04 am. RentShepherd triages it as an emergency, replies with safety guidance, and sends the landlord a one-tap approval card to dispatch a plumber.">
+        <div class="phone">
+          <div class="phone-notch" aria-hidden="true"></div>
+          <div class="phone-screen">
+            <div class="chat-header">
+              <span class="chat-avatar" aria-hidden="true">M</span>
+              <span class="chat-meta">
+                <strong>Maya · Unit 2B</strong>
+                <small><span class="online-dot" aria-hidden="true"></span> RentShepherd answering</small>
+              </span>
+            </div>
+            <div class="chat-body">
+              <div class="msg msg-tenant anim anim-1">Water heater is leaking! There&rsquo;s water on the basement floor.</div>
+              <div class="msg-time anim anim-1">2:04 am</div>
+              <div class="triage-chip anim anim-2"><span class="triage-dot" aria-hidden="true"></span> Triaged: <strong>Emergency</strong> · Plumbing</div>
+              <div class="msg msg-ai anim anim-3">On it, Maya. If it&rsquo;s safe to reach, turn the valve on top of the heater clockwise to stop the flow. I&rsquo;m alerting your landlord and preparing an emergency plumber now.</div>
+              <div class="msg msg-ai msg-typing anim anim-4" aria-hidden="true"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="approval-card anim anim-5">
+          <div class="approval-head">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3 4 7v5c0 4.4 3.2 8 8 9 4.8-1 8-4.6 8-9V7l-8-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            Your approval needed
+          </div>
+          <p class="approval-body">Dispatch draft ready: emergency plumber call-out, Unit 2B water heater. Vendor: your saved plumber.</p>
+          <div class="approval-actions">
+            <span class="chip-approve">Approve &amp; send</span>
+            <span class="chip-edit">Edit draft</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES: BENTO ============ -->
+    <section class="section container" id="features">
+      <div class="section-head reveal">
+        <p class="eyebrow">What it handles</p>
+        <h2>A full-time property manager&rsquo;s job.<br><span class="grad-text">Without the 8–10% cut.</span></h2>
+        <p class="section-sub">Everything below runs on autopilot — and anything that commits your money or your word waits for your one-tap approval.</p>
+      </div>
+
+      <div class="bento" data-stagger>
+        <article class="glass-card bento-cell span-2 reveal">
+          <div class="cell-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Every tenant text, answered — day and night</h3>
+          <p>Tenants message one number and always get a real reply in seconds: questions answered, requests logged, urgency assessed. You read the thread whenever you like, not at 2am.</p>
+          <div class="mini-thread" aria-hidden="true">
+            <span class="mini-bubble left">Is the parking spot behind the building mine?</span>
+            <span class="mini-bubble right">Yes — spot 4 is assigned to Unit 2B in your lease. Want me to resend the parking map?</span>
+          </div>
+        </article>
+
+        <article class="glass-card bento-cell reveal">
+          <div class="cell-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Triage that knows a burst pipe from a dripping tap</h3>
+          <p>Real emergencies escalate to you immediately with safety guidance already sent. Everything else is scheduled for a reasonable hour.</p>
+        </article>
+
+        <article class="glass-card bento-cell reveal">
+          <div class="cell-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4L15 12l-3-3 2.7-2.7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Vendor dispatch, drafted for you</h3>
+          <p>A ready-to-send message to your plumber or electrician — unit, issue, photos, access notes. You approve, edit, or hold it.</p>
+        </article>
+
+        <article class="glass-card bento-cell reveal">
+          <div class="cell-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 4a6 6 0 0 1 6 6v3l2 3H4l2-3v-3a6 6 0 0 1 6-6Zm-2 14a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Rent reminders that stay polite so you don&rsquo;t have to be</h3>
+          <p>Friendly nudges before the due date, firmer follow-ups after, and a live view of who has paid and who hasn&rsquo;t.</p>
+        </article>
+
+        <article class="glass-card bento-cell reveal">
+          <div class="cell-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M8 3v4M16 3v4M8 13h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Lease renewals, never last-minute</h3>
+          <p>90-, 60-, and 30-day renewal checkpoints with drafted tenant outreach — so notice periods never sneak past you.</p>
+        </article>
+
+        <article class="glass-card bento-cell span-2 reveal">
+          <div class="cell-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>A monthly owner report you&rsquo;ll actually read</h3>
+          <p>Rent collected, open and resolved repairs, upcoming lease dates, and every conversation summarized — one clean page per month, per property.</p>
+          <div class="mini-report" aria-hidden="true">
+            <span class="report-row"><i style="width:86%"></i><b>Rent collected</b></span>
+            <span class="report-row"><i style="width:32%"></i><b>Repairs resolved</b></span>
+            <span class="report-row"><i style="width:58%"></i><b>Messages handled</b></span>
+          </div>
+        </article>
+
+        <article class="glass-card bento-cell span-2 reveal">
+          <div class="cell-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 4.4 3.2 8 8 9 4.8-1 8-4.6 8-9V7l-8-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12 2.2 2.2 4.2-4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>You hold the crook</h3>
+          <p>RentShepherd never spends your money or commits your word on its own. Dispatches, renewal offers, and anything unusual arrive as one-tap approval cards — approve, edit, or decline from your phone.</p>
+        </article>
+
+        <article class="glass-card bento-cell span-2 reveal">
+          <div class="cell-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Calls answered, not just texts</h3>
+          <p>On Growth and Portfolio plans, tenants who phone get a calm voice that takes the details, triages the issue, and logs it — every call transcribed into the same inbox.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section container" id="how-it-works">
+      <div class="section-head reveal">
+        <p class="eyebrow">How it works</p>
+        <h2>Set up once. <span class="grad-text">Sleep every night after.</span></h2>
+      </div>
+
+      <div class="steps" data-stagger>
+        <div class="glass-card step reveal">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Connect your properties</h3>
+          <p>Add your units, tenants, lease dates, and preferred vendors. Share your RentShepherd number with tenants — setup takes under 15 minutes.</p>
+        </div>
+        <div class="glass-card step reveal">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>RentShepherd takes the front line</h3>
+          <p>Texts and calls are answered instantly, repairs triaged, rent tracked, and renewals monitored — every interaction logged in one inbox.</p>
+        </div>
+        <div class="glass-card step reveal">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>You approve with one tap</h3>
+          <p>Anything that needs a decision — a vendor dispatch, a renewal offer, an edge case — comes to you as an approval card. Tap once, done.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ USE CASES ============ -->
+    <section class="section container" id="use-cases">
+      <div class="section-head reveal">
+        <p class="eyebrow">Built for</p>
+        <h2>Landlords who do it <span class="grad-text">themselves</span></h2>
+      </div>
+
+      <div class="use-cases" data-stagger>
+        <div class="glass-card use-case reveal">
+          <h3>The accidental landlord</h3>
+          <p>You kept the old place when you moved. One tenant, one property — and somehow it still texts you at midnight. Hand over the interruptions, keep the income.</p>
+        </div>
+        <div class="glass-card use-case reveal">
+          <h3>The remote owner</h3>
+          <p>Your rentals are in another city or another time zone. RentShepherd is on the ground at all hours, and your vendors get dispatched without a single missed call.</p>
+        </div>
+        <div class="glass-card use-case reveal">
+          <h3>The nights-and-weekends portfolio</h3>
+          <p>A duplex here, two single-family homes there, a day job in between. Scale to a dozen units without your phone becoming a second job.</p>
+        </div>
+        <div class="glass-card use-case reveal">
+          <h3>The small building owner</h3>
+          <p>Fifteen units is enough volume to justify a manager — and enough margin to resent paying one 8–10% of rent. Keep the control and the profit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="section container" id="pricing">
+      <div class="section-head reveal">
+        <p class="eyebrow">Pricing</p>
+        <h2>Less than one hour of a <span class="grad-text">handyman&rsquo;s time</span></h2>
+        <p class="section-sub">Every plan starts with a 14-day free trial. No card required. Prices in USD.</p>
+      </div>
+
+      <div class="pricing-grid" data-stagger>
+        <div class="glass-card price-card reveal">
+          <h3 class="tier-name">Starter</h3>
+          <p class="tier-for">For your first rentals</p>
+          <p class="tier-price"><span class="amount">$29</span><span class="per">/mo</span></p>
+          <ul class="tier-features">
+            <li>Up to 3 units</li>
+            <li>Tenant messaging AI, 24/7</li>
+            <li>Rent reminders</li>
+            <li>Maintenance inbox</li>
+          </ul>
+          <a class="btn btn-ghost btn-block" href="#waitlist">Start free trial</a>
+        </div>
+
+        <div class="glass-card price-card price-featured reveal">
+          <span class="popular-badge">Most popular</span>
+          <h3 class="tier-name">Growth</h3>
+          <p class="tier-for">For serious self-managers</p>
+          <p class="tier-price"><span class="amount">$79</span><span class="per">/mo</span></p>
+          <ul class="tier-features">
+            <li>Up to 12 units</li>
+            <li>Everything in Starter</li>
+            <li>24/7 call answering</li>
+            <li>Repair triage + vendor dispatch drafts</li>
+            <li>Owner reports</li>
+          </ul>
+          <a class="btn btn-primary btn-block" href="#waitlist">Start free trial</a>
+        </div>
+
+        <div class="glass-card price-card reveal">
+          <h3 class="tier-name">Portfolio</h3>
+          <p class="tier-for">For growing portfolios</p>
+          <p class="tier-price"><span class="amount">$149</span><span class="per">/mo</span></p>
+          <ul class="tier-features">
+            <li>Up to 30 units</li>
+            <li>Everything in Growth</li>
+            <li>Multi-property dashboard</li>
+            <li>Lease renewal automation</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="btn btn-ghost btn-block" href="#waitlist">Start free trial</a>
+        </div>
+      </div>
+
+      <p class="pricing-note reveal">Compare: a traditional property manager charging 8–10% of rent costs a landlord collecting $6,000/mo between $480 and $600 — every month, with less of your say.</p>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section container section-narrow" id="faq">
+      <div class="section-head reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2>Fair questions</h2>
+      </div>
+
+      <div class="faq-list" data-stagger>
+        <details class="glass-card faq-item reveal">
+          <summary>Will my tenants know they&rsquo;re talking to an AI?</summary>
+          <div class="faq-body"><p>Yes. RentShepherd introduces itself as your property&rsquo;s assistant and never pretends to be you. Tenants can ask for you directly at any time, and you can jump into any thread whenever you want.</p></div>
+        </details>
+
+        <details class="glass-card faq-item reveal">
+          <summary>What happens in a genuine emergency at 2am?</summary>
+          <div class="faq-body"><p>The triage engine treats anything involving water, gas, electrical hazard, no heat, or security as urgent. The tenant gets immediate safety guidance, you get an alert with the full context, and a vendor dispatch draft is waiting for your one-tap approval. For life-threatening situations, tenants are always told to contact local emergency services first.</p></div>
+        </details>
+
+        <details class="glass-card faq-item reveal">
+          <summary>Can RentShepherd do anything without my approval?</summary>
+          <div class="faq-body"><p>Only what you&rsquo;ve pre-approved — routine replies, scheduled rent reminders, logging requests. Anything new that commits your money or your word — sending a vendor, making a renewal offer, promising a repair date — waits for your one-tap approval. You can widen or tighten those boundaries per property.</p></div>
+        </details>
+
+        <details class="glass-card faq-item reveal">
+          <summary>Does RentShepherd collect rent or hold my money?</summary>
+          <div class="faq-body"><p>No — it never touches your funds. It sends the reminders, tracks who has paid against your ledger, and flags late payments — working alongside however your tenants already pay you, whether that&rsquo;s a bank transfer, a payment app, or anything else.</p></div>
+        </details>
+
+        <details class="glass-card faq-item reveal">
+          <summary>Does it work outside the United States?</summary>
+          <div class="faq-body"><p>RentShepherd is built for small landlords worldwide. Tenant messaging, the maintenance inbox, rent tracking, renewals, and owner reports work anywhere; phone-call answering depends on local number availability in your country. Billing is in USD.</p></div>
+        </details>
+
+        <details class="glass-card faq-item reveal">
+          <summary>How does the 14-day free trial work?</summary>
+          <div class="faq-body"><p>Pick a plan, connect your properties, and use every feature of that plan for 14 days — no card required to start. If it&rsquo;s not for you, walk away and pay nothing. If it is, add a payment method and carry on. Cancel or change plans anytime.</p></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA / WAITLIST ============ -->
+    <section class="section container section-narrow" id="waitlist">
+      <div class="glass-card cta-card reveal">
+        <div class="cta-copy">
+          <h2>Get the 2am shift <span class="grad-text">covered</span></h2>
+          <p>Join the early access list. You&rsquo;ll be first in line for the 14-day free trial — no card required, and we&rsquo;ll only email you about RentShepherd.</p>
+        </div>
+
+        <form name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="waitlist-form">
+          <input type="hidden" name="form-name" value="waitlist">
+          <p class="hp-field" aria-hidden="true">
+            <label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <div class="form-row">
+            <label for="wl-name">Name</label>
+            <input id="wl-name" name="name" type="text" required autocomplete="name" placeholder="Alex Tan">
+          </div>
+
+          <div class="form-row">
+            <label for="wl-email">Email</label>
+            <input id="wl-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+
+          <div class="form-row">
+            <label for="wl-units">How many units do you manage?</label>
+            <select id="wl-units" name="units" required>
+              <option value="" disabled selected>Select a range</option>
+              <option value="1-3">1–3</option>
+              <option value="4-12">4–12</option>
+              <option value="13-30">13–30</option>
+              <option value="30+">30+</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Join the early access list</button>
+          <p class="form-note">Your details stay with us — encrypted in transit, never sold, never shared with vendors or tenants.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="Back to top">
+          <svg class="brand-mark" viewBox="0 0 48 48" width="30" height="30" aria-hidden="true" focusable="false">
+            <path d="M24 6 42.5 20v19.5a3 3 0 0 1-3 3h-31a3 3 0 0 1-3-3V20Z" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linejoin="round"/>
+            <path d="M19.5 35.5V19.5a6 6 0 0 1 12 0v3" fill="none" stroke="#2dd4bf" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-name">Rent<em>Shepherd</em></span>
+        </a>
+        <p class="footer-tag">The AI property manager for small landlords. It does the 2am part — you keep the control.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Product">
+        <h3>Product</h3>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#use-cases">Who it&rsquo;s for</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Get started">
+        <h3>Get started</h3>
+        <a href="#faq">FAQ</a>
+        <a href="#waitlist">Early access</a>
+        <a href="#waitlist">Free trial</a>
+      </nav>
+    </div>
+
+    <div class="container footer-legal">
+      <p>&copy; 2026 RentShepherd. All rights reserved.</p>
+      <p>Designed &amp; Built by <a href="https://stylemarking.com" rel="noopener">StyleMarking.com</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
