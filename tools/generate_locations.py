@@ -283,6 +283,27 @@ for c in CITIES:
     CITIES_BY_STATE.setdefault(c[2], []).append(c)
 
 
+# Words that start with a vowel LETTER but a consonant SOUND -> "a Utah".
+_A_BEFORE_VOWEL_LETTER = (
+    "utah", "utica", "union", "unit", "united", "uniform", "university",
+    "usual", "user", "eu", "ewe", "one",
+)
+# Words that start with a consonant LETTER but a vowel SOUND -> "an hour".
+_AN_BEFORE_CONSONANT_LETTER = ("hour", "honest", "honor", "honour", "heir")
+
+
+def article(word):
+    """Return 'a' or 'an' for `word`, chosen by initial SOUND, not spelling."""
+    w = re.sub(r"^[^A-Za-z]+", "", word or "").lower()
+    if not w:
+        return "a"
+    if w.startswith(_AN_BEFORE_CONSONANT_LETTER):
+        return "an"
+    if w.startswith(_A_BEFORE_VOWEL_LETTER):
+        return "a"
+    return "an" if w[0] in "aeiou" else "a"
+
+
 def pick(name, salt, options):
     """Deterministic variant selection: hash of location name + section salt."""
     h = int(hashlib.md5((name + "|" + salt).encode("utf-8")).hexdigest(), 16)
@@ -310,10 +331,10 @@ TITLES = [
 
 DESCRIPTIONS = [
     "RentShepherd is the AI property manager for {loc} — 24/7 tenant call and text answering, repair triage, automatic rent payments, and owner reports. From $29/mo.",
-    "AI property management in {loc}: tenants answered around the clock, repairs triaged, rent collected automatically, lease renewals prepped. 14-day free trial.",
+    "AI property management in {loc}: tenants answered around the clock, repairs triaged, rent collected automatically, lease renewals prepped. Now in early access.",
     "{loc} landlords and property managers: put an AI on the front line — calls, texts, repairs, rent, and renewals handled 24/7 while approvals stay with you.",
     "The all-in-one AI property management platform, available across {loc}. Tenant answering 24/7, work orders with photos, autopay rent, owner reports. $29–$149/mo.",
-    "Manage {loc} rentals without the 2am calls. RentShepherd answers tenants 24/7, triages repairs, auto-collects rent, and preps renewals. Free 14-day trial.",
+    "Manage {loc} rentals without the 2am calls. RentShepherd answers tenants 24/7, triages repairs, auto-collects rent, and preps renewals. Join the early access list.",
 ]
 
 EYEBROWS = [
@@ -395,7 +416,7 @@ FEAT_SUBS = [
 ]
 
 CLIMATE_LINE = {
-    "cold": "A no-heat call on a {loc} winter night is treated as the emergency it is.",
+    "cold": "A no-heat call on {art} {loc} winter night is treated as the emergency it is.",
     "hot": "An air-conditioning failure in the {loc} summer heat is treated as the emergency it is.",
     "mixed": "A burst pipe at 2am is treated as the emergency it is; a dripping tap waits for morning.",
 }
@@ -439,7 +460,7 @@ FEATURES = {
     ),
     "dispatch": (
         ["Vendor dispatch, drafted for you", "Dispatches ready for one tap"],
-        ["When a {loc} repair needs a pro, a ready-to-send message to your own plumber or electrician is waiting — unit, issue, photos, access notes. You approve, edit, or hold it. RentShepherd never spends your money on its own.",
+        ["When {art} {loc} repair needs a pro, a ready-to-send message to your own plumber or electrician is waiting — unit, issue, photos, access notes. You approve, edit, or hold it. RentShepherd never spends your money on its own.",
          "RentShepherd drafts the dispatch to your preferred local vendor the moment triage calls for one — full context included. It sends only after your one-tap approval, so your money and your word stay yours."],
     ),
 }
@@ -457,10 +478,10 @@ PRICE_HEADS = [
 ]
 
 PRICE_INTROS = [
-    "Every plan starts with a 14-day free trial — no card required, cancel anytime. Prices in USD, the same in {loc} as everywhere else.",
-    "Flat monthly pricing, not a percentage of your {loc} rents. Every plan starts with a 14-day free trial — no card required.",
-    "Pick the plan that fits your {loc} portfolio today and change it as you grow. All plans start with a 14-day free trial, no card required.",
-    "No percentage of rent, no setup fee — one flat monthly price. Every plan begins with a 14-day free trial, no card required.",
+    "These are the plans we intend to launch with — RentShepherd is in early access and nothing is on sale yet. Prices in USD, the same in {loc} as everywhere else.",
+    "Flat monthly pricing, not a percentage of your {loc} rents. These are the planned launch prices; RentShepherd is in early access and not yet open for sign-up.",
+    "A plan for every size of {loc} portfolio, and you can change plan as you grow. These are planned launch prices, not yet purchasable: RentShepherd is in early access.",
+    "No percentage of rent, no setup fee — one flat monthly price, planned for launch. RentShepherd is in early access today, so nothing can be bought yet.",
 ]
 
 PRICE_NOTES = [
@@ -478,10 +499,10 @@ CTA_HEADS = [
 ]
 
 CTA_BODIES = [
-    "Join the early access list and you'll be first in line for the 14-day free trial — no card required, and we'll only email you about RentShepherd.",
-    "Start the 14-day free trial: connect your {loc} units, share one number with tenants, and let RentShepherd take the front line — you keep one-tap control.",
-    "Setup takes about 15 minutes: add units, tenants, lease dates, and your preferred vendors. From that moment, every tenant message gets answered — day or night.",
-    "No card required to start, cancel anytime. If it's not for you after 14 days, walk away and pay nothing.",
+    "Join the early access list and we'll email you as soon as access opens — and we'll only ever email you about RentShepherd.",
+    "Get your {loc} units on the early access list. When access opens you share one number with tenants and RentShepherd takes the front line — you keep one-tap control.",
+    "When your access opens, setup takes about 15 minutes: add units, tenants, lease dates, and your preferred vendors. From that moment, every tenant message gets answered — day or night.",
+    "Joining the list costs nothing and commits you to nothing — no card, no account. We'll tell you when access opens for {loc} landlords.",
 ]
 
 LINK_HEADS_STATE = [
@@ -527,6 +548,19 @@ INLINE_CSS = """
 # PAGE SHELL (nav + footer copied from index.html, links adjusted for /locations/)
 # ---------------------------------------------------------------------------
 
+# Analytics is wired but inert until a real GA4 id replaces the placeholder.
+ANALYTICS = (
+    '  <!-- Analytics: paste your GA4 Measurement ID below to activate. '
+    'Until then this is a no-op. -->\n'
+    '  <script>window.GA_ID="G-XXXXXXXXXX";'
+    'if(window.GA_ID&&!/^G-X+$/.test(window.GA_ID))'
+    "{var s=document.createElement('script');s.async=1;"
+    "s.src='https://www.googletagmanager.com/gtag/js?id='+window.GA_ID;"
+    'document.head.appendChild(s);window.dataLayer=window.dataLayer||[];'
+    'function gtag(){dataLayer.push(arguments);}'
+    "gtag('js',new Date());gtag('config',window.GA_ID);}</script>"
+)
+
 FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23071009'/%3E%3Cpath d='M24 7 41 20v19a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V20Z' fill='none' stroke='%2334d399' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M20 35V20a5 5 0 0 1 10 0v2.5' fill='none' stroke='%232dd4bf' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"
 
 
@@ -569,6 +603,8 @@ def page_shell(title, description, canonical, jsonld, main_html):
   <script type="application/ld+json">
 {jsonld}
   </script>
+
+{analytics}
 </head>
 <body>
 
@@ -602,7 +638,7 @@ def page_shell(title, description, canonical, jsonld, main_html):
         <a href="/#how-it-works">How it works</a>
         <a href="/#pricing">Pricing</a>
         <a href="/#faq">FAQ</a>
-        <a class="btn btn-primary btn-nav" href="/#waitlist">Start free trial</a>
+        <a class="btn btn-primary btn-nav" href="/#waitlist">Get early access</a>
       </nav>
 
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
@@ -642,11 +678,13 @@ def page_shell(title, description, canonical, jsonld, main_html):
         <a href="/#faq">FAQ</a>
         <a href="/#waitlist">Early access</a>
         <a href="index.html">All locations</a>
+        <a href="mailto:leads@stylemarking.com">Contact us</a>
       </nav>
     </div>
 
     <div class="container footer-legal">
       <p>&copy; 2026 RentShepherd. All rights reserved.</p>
+      <p><a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot; <a href="mailto:leads@stylemarking.com">leads@stylemarking.com</a></p>
       <p>Designed &amp; Built by <a href="https://stylemarking.com" rel="noopener">StyleMarking.com</a></p>
     </div>
   </footer>
@@ -655,7 +693,8 @@ def page_shell(title, description, canonical, jsonld, main_html):
 </body>
 </html>
 """.format(title=esc(title), description=esc(description), canonical=canonical,
-           favicon=FAVICON, inline_css=INLINE_CSS, jsonld=jsonld, main_html=main_html)
+           favicon=FAVICON, inline_css=INLINE_CSS, jsonld=jsonld, main_html=main_html,
+           analytics=ANALYTICS)
 
 
 def esc(s):
@@ -700,6 +739,7 @@ def jsonld_for(loc_name, kind, canonical, description, state_name=None):
                     "lowPrice": "29",
                     "highPrice": "149",
                     "offerCount": "3",
+                    "availability": "https://schema.org/PreOrder",
                 },
             },
         ],
@@ -725,10 +765,12 @@ def features_html(name, loc, climate, kind, extra_city=None):
     cards = []
     for i, key in enumerate(chosen):
         titles, bodies = FEATURES[key]
-        t = pick(name, "ft-" + key, titles).format(loc=loc)
+        art = article(loc)
+        t = pick(name, "ft-" + key, titles).format(loc=loc, art=art)
         ref = REPORT_REF[kind].format(loc=loc)
         b = pick(name, "fb-" + key, bodies).format(
-            loc=loc, climate=CLIMATE_LINE[climate].format(loc=loc), ref=ref)
+            loc=loc, art=art, ref=ref,
+            climate=CLIMATE_LINE[climate].format(loc=loc, art=art))
         cards.append(
             '        <div class="glass-card use-case reveal">\n'
             '          <h3>%s</h3>\n'
@@ -752,11 +794,12 @@ def pricing_html(name, loc):
     note = pick(name, "pnote", PRICE_NOTES).format(loc=loc)
     return ('    <section class="loc-section container section-narrow">\n'
             '      <div class="glass-card cta-card reveal loc-prose">\n'
+            '        <p class="eyebrow">Planned pricing at launch</p>\n'
             '        <h2>%s</h2>\n'
             '        <p>%s</p>\n%s\n'
             '        <p>%s</p>\n'
             '        <div class="price-ctas">\n'
-            '          <a class="btn btn-primary btn-lg" href="/#waitlist">Start your 14-day free trial</a>\n'
+            '          <a class="btn btn-primary btn-lg" href="/#waitlist">Join the early access list</a>\n'
             '          <a class="btn btn-ghost btn-lg" href="/#pricing">See full pricing</a>\n'
             '        </div>\n'
             '      </div>\n'
@@ -953,10 +996,11 @@ def build_hub():
 
     <section class="loc-section container section-narrow">
       <div class="glass-card cta-card reveal loc-prose">
+        <p class="eyebrow">Planned pricing at launch</p>
         <h2>Same platform, same pricing, everywhere</h2>
-        <p>Starter $29/mo (up to 3 units) &middot; Growth $79/mo (up to 12 units, most popular) &middot; Portfolio $149/mo (up to 30 units) &middot; Enterprise custom (unlimited units for property management companies). Every plan starts with a 14-day free trial — no card required.</p>
+        <p>Starter $29/mo (up to 3 units) &middot; Growth $79/mo (up to 12 units, most popular) &middot; Portfolio $149/mo (up to 30 units) &middot; Enterprise custom (unlimited units for property management companies). RentShepherd is in early access — these are the prices we plan to launch with, and nothing is on sale yet.</p>
         <div class="price-ctas">
-          <a class="btn btn-primary btn-lg" href="/#waitlist">Start your 14-day free trial</a>
+          <a class="btn btn-primary btn-lg" href="/#waitlist">Join the early access list</a>
           <a class="btn btn-ghost btn-lg" href="/#pricing">See full pricing</a>
         </div>
       </div>
@@ -1003,13 +1047,17 @@ BLOG_SLUGS = [
 
 def build_sitemap(slugs):
     urls = [DOMAIN + "/", DOMAIN + "/blog/"]
+    legal = [DOMAIN + "/privacy", DOMAIN + "/terms"]
     urls += [DOMAIN + "/blog/" + s for s in BLOG_SLUGS]
     urls += [DOMAIN + "/locations/"]
     urls += [DOMAIN + "/locations/" + s for s in slugs]
+    urls += legal
     rows = []
     for u in urls:
         if u == DOMAIN + "/":
             prio = "1.0"
+        elif u in legal:
+            prio = "0.3"
         elif u.endswith("/locations/") or u.endswith("/blog/"):
             prio = "0.8"
         else:
@@ -1105,7 +1153,8 @@ def validate():
                 fs = os.path.normpath(os.path.join(LOC_DIR, target))
             if os.path.isdir(fs):
                 fs = os.path.join(fs, "index.html")
-            if not os.path.isfile(fs):
+            # Netlify serves extensionless "pretty URLs" (/privacy -> privacy.html).
+            if not os.path.isfile(fs) and not os.path.isfile(fs + ".html"):
                 errors.append("%s: broken internal link -> %s" % (fname, href))
     return errors, word_counts, pages
 

@@ -1,7 +1,14 @@
 // Runs automatically on every VERIFIED Netlify form submission (waitlist form).
-// Pushes the lead instantly to Jacob's phone via the private ntfy topic —
-// same pattern as revisions-unlimited and edge-enterprise.
-const NTFY_TOPIC = "rentshepherd-leads-5bbf16a3c8923db7";
+//
+// SECURITY: this repository is PUBLIC and ntfy.sh topics have no read
+// authentication, so the topic name below is effectively public and anyone
+// who reads it can subscribe. The push therefore carries NO personal data.
+// The lead's name and email live only in the Netlify Forms dashboard, which
+// is behind your account login.
+//
+// Set NTFY_TOPIC in the Netlify UI to rotate onto a fresh topic; the value
+// below is the original and stays as a fallback so nothing breaks.
+const NTFY_TOPIC = process.env.NTFY_TOPIC || "rentshepherd-leads-5bbf16a3c8923db7";
 
 exports.handler = async (event) => {
   try {
@@ -9,23 +16,24 @@ exports.handler = async (event) => {
     const form = payload.form_name || "unknown-form";
     const d = payload.data || {};
 
-    const skip = new Set(["ip", "user_agent", "referrer", "bot-field", "form-name", "subject"]);
-    const lines = Object.entries(d)
-      .filter(([k, v]) => !skip.has(k) && v && typeof v === "string" && v.trim())
-      .map(([k, v]) => `${k.toUpperCase()}: ${v}`);
+    // Non-identifying context only. Never name, email, phone or free text.
+    const safe = [];
+    if (d.role) safe.push(`Role: ${String(d.role).slice(0, 40)}`);
+    if (d["business-type"]) safe.push(`Business type: ${String(d["business-type"]).slice(0, 40)}`);
+    if (d.portfolio || d["portfolio-size"]) safe.push(`Portfolio: ${String(d.portfolio || d["portfolio-size"]).slice(0, 40)}`);
 
-    const title = `RentShepherd LEAD: ${d.name || "unknown"}`;
+    const title = "RentShepherd: new waitlist signup";
     const body =
-      `${title}\nForm: ${form}\nReceived: ${payload.created_at}\n\n` +
-      lines.join("\n") +
-      `\n\nReply to: ${d.email || "n/a"}`;
+      `Form: ${form}\nReceived: ${payload.created_at}\n` +
+      (safe.length ? safe.join("\n") + "\n" : "") +
+      "\nName and email are in the Netlify Forms dashboard.";
 
     const res = await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
       method: "POST",
-      headers: { Title: title, Priority: "high", Tags: "moneybag" },
+      headers: { Title: title, Priority: "default", Tags: "inbox_tray" },
       body,
     });
-    console.log("ntfy delivery:", res.status);
+    if (!res.ok) console.error("ntfy delivery failed:", res.status);
     return { statusCode: 200, body: "ok" };
   } catch (err) {
     console.error("notify failed:", err);

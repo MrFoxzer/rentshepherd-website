@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://rentshepherd.com/">
   <meta property="og:site_name" content="RentShepherd">
   <meta property="og:title" content="RentShepherd — AI Property Manager for Landlords &amp; Property Managers">
-  <meta property="og:description" content="Answers tenant texts and calls 24/7, triages repairs, tracks rent, and preps renewals — for one rental or a whole portfolio of buildings. You keep control — RentShepherd does the 2am part. 14-day free trial, no card required.">
+  <meta property="og:description" content="Answers tenant texts and calls 24/7, triages repairs, tracks rent, and preps renewals — for one rental or a whole portfolio of buildings. You keep control — RentShepherd does the 2am part. Now in early access — join the list.">
   <meta property="og:image" content="https://rentshepherd.com/images/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -60,27 +60,33 @@
             "name": "Starter",
             "price": "29",
             "priceCurrency": "USD",
-            "description": "Up to 3 units. Tenant messaging AI, rent reminders, maintenance inbox. 14-day free trial."
+            "availability": "https://schema.org/PreOrder",
+            "description": "Up to 3 units. Tenant messaging AI, rent reminders, maintenance inbox. Planned launch pricing \u2014 not yet available for purchase."
           },
           {
             "@type": "Offer",
             "name": "Growth",
             "price": "79",
             "priceCurrency": "USD",
-            "description": "Up to 12 units. 24/7 call answering, repair triage and vendor dispatch drafts, owner reports. 14-day free trial."
+            "availability": "https://schema.org/PreOrder",
+            "description": "Up to 12 units. 24/7 call answering, repair triage and vendor dispatch drafts, owner reports. Planned launch pricing \u2014 not yet available for purchase."
           },
           {
             "@type": "Offer",
             "name": "Portfolio",
             "price": "149",
             "priceCurrency": "USD",
-            "description": "Up to 30 units. Multi-property dashboard, lease renewal automation, priority support. 14-day free trial."
+            "availability": "https://schema.org/PreOrder",
+            "description": "Up to 30 units. Multi-property dashboard, lease renewal automation, priority support. Planned launch pricing \u2014 not yet available for purchase."
           }
         ]
       }
     ]
   }
   </script>
+
+  <!-- Analytics: paste your GA4 Measurement ID below to activate. Until then this is a no-op. -->
+  <script>window.GA_ID="G-XXXXXXXXXX";if(window.GA_ID&&!/^G-X+$/.test(window.GA_ID)){var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+window.GA_ID;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',window.GA_ID);}</script>
 </head>
 <body>
 
@@ -114,7 +120,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn-primary btn-nav" href="#waitlist">Start free trial</a>
+        <a class="btn btn-primary btn-nav" href="#waitlist">Get early access</a>
       </nav>
 
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
@@ -131,10 +137,10 @@
         <h1 class="reveal">Your rentals, <span class="grad-text">watched&nbsp;over</span> 24/7.</h1>
         <p class="hero-sub reveal">RentShepherd answers tenant texts and calls around the clock, triages repairs, chases rent, and preps lease renewals. You approve every action with one tap — it just does the 2am part.</p>
         <div class="hero-ctas reveal">
-          <a class="btn btn-primary btn-lg" href="#waitlist">Start your 14-day free trial</a>
+          <a class="btn btn-primary btn-lg" href="#waitlist">Join the early access list</a>
           <a class="btn btn-ghost btn-lg" href="#how-it-works">See how it works</a>
         </div>
-        <p class="hero-note reveal">No card required · Cancel anytime · A fraction of the 8–10% of rent traditional managers charge</p>
+        <p class="hero-note reveal">Early access · Nothing to pay and no account to create · Planned pricing is a fraction of the 8–10% of rent traditional managers charge</p>
       </div>
 
       <!-- Product mockup: glass phone + approval card -->
@@ -341,9 +347,9 @@
     <!-- ============ PRICING ============ -->
     <section class="section container" id="pricing">
       <div class="section-head reveal">
-        <p class="eyebrow">Pricing</p>
+        <p class="eyebrow">Planned pricing at launch</p>
         <h2>Less than one hour of a <span class="grad-text">handyman&rsquo;s time</span></h2>
-        <p class="section-sub">Every plan starts with a 14-day free trial. No card required. Prices in USD.</p>
+        <p class="section-sub">RentShepherd is in early access — these are the plans we intend to launch with, and nothing is on sale yet. Prices in USD, and they may change before launch.</p>
       </div>
 
       <div class="pricing-grid" data-stagger>
@@ -357,7 +363,7 @@
             <li>Rent reminders</li>
             <li>Tenant work orders + maintenance inbox</li>
           </ul>
-          <a class="btn btn-ghost btn-block" href="#waitlist">Start free trial</a>
+          <a class="btn btn-ghost btn-block" href="#waitlist">Join the early access list</a>
         </div>
 
         <div class="glass-card price-card price-featured reveal">
@@ -373,7 +379,7 @@
             <li>Repair triage + vendor dispatch drafts</li>
             <li>Owner reports</li>
           </ul>
-          <a class="btn btn-primary btn-block" href="#waitlist">Start free trial</a>
+          <a class="btn btn-primary btn-block" href="#waitlist">Join the early access list</a>
         </div>
 
         <div class="glass-card price-card reveal">
@@ -387,7 +393,7 @@
             <li>Lease renewal automation</li>
             <li>Priority support</li>
           </ul>
-          <a class="btn btn-ghost btn-block" href="#waitlist">Start free trial</a>
+          <a class="btn btn-ghost btn-block" href="#waitlist">Join the early access list</a>
         </div>
       </div>
 
@@ -405,7 +411,8 @@
         </div>
         <div class="wide-cta">
           <p class="tier-price"><span class="amount">Custom</span></p>
-          <a class="btn btn-primary btn-block" href="#waitlist">Talk to us</a>
+          <a class="btn btn-primary btn-block" href="#waitlist">Join the early access list</a>
+          <p class="form-note" style="margin:0">Or email <a href="mailto:leads@stylemarking.com" style="text-decoration:underline;text-underline-offset:3px">leads@stylemarking.com</a></p>
         </div>
       </div>
 
@@ -442,7 +449,7 @@
 
         <details class="glass-card faq-item reveal">
           <summary>Does it work outside the United States?</summary>
-          <div class="faq-body"><p>RentShepherd is built for landlords worldwide. Tenant messaging, the maintenance inbox, rent tracking, renewals, and owner reports work anywhere; phone-call answering depends on local number availability in your country. Billing is in USD.</p></div>
+          <div class="faq-body"><p>RentShepherd is being built for landlords worldwide, and the early access list is open to landlords anywhere. Tenant messaging, the maintenance inbox, rent tracking, renewals, and owner reports are designed to work anywhere; phone-call answering will depend on local number availability in your country. Planned billing is in USD. Wherever you are, our <a href="/privacy">privacy policy</a> sets out exactly what we collect when you join the list.</p></div>
         </details>
 
         <details class="glass-card faq-item reveal">
@@ -451,8 +458,8 @@
         </details>
 
         <details class="glass-card faq-item reveal">
-          <summary>How does the 14-day free trial work?</summary>
-          <div class="faq-body"><p>Pick a plan, connect your properties, and use every feature of that plan for 14 days — no card required to start. If it&rsquo;s not for you, walk away and pay nothing. If it is, add a payment method and carry on. Cancel or change plans anytime.</p></div>
+          <summary>How do I get access?</summary>
+          <div class="faq-body"><p>RentShepherd is in early access and not yet open to the public — there is no sign-up, no checkout and no account to create. Join the early access list with your name, your email, and roughly how many units you look after, and we will email you when access opens for you, along with what it costs and what your options are. Joining the list is free and commits you to nothing.</p></div>
         </details>
       </div>
     </section>
@@ -462,10 +469,10 @@
       <div class="glass-card cta-card reveal">
         <div class="cta-copy">
           <h2>Get the 2am shift <span class="grad-text">covered</span></h2>
-          <p>Join the early access list. You&rsquo;ll be first in line for the 14-day free trial — no card required, and we&rsquo;ll only email you about RentShepherd.</p>
+          <p>Join the early access list. We&rsquo;ll email you the moment access opens — and we&rsquo;ll only ever email you about RentShepherd.</p>
         </div>
 
-        <form name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="waitlist-form">
+        <form name="waitlist" method="POST" action="/thank-you" data-netlify="true" data-netlify-honeypot="bot-field" class="waitlist-form">
           <input type="hidden" name="form-name" value="waitlist">
           <p class="hp-field" aria-hidden="true">
             <label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
@@ -495,7 +502,7 @@
           </div>
 
           <button class="btn btn-primary btn-lg btn-block" type="submit">Join the early access list</button>
-          <p class="form-note">Your details stay with us — encrypted in transit, never sold, never shared with vendors or tenants.</p>
+          <p class="form-note">Sent over an encrypted connection and stored by our forms provider. Never sold, never shared with tenants or maintenance vendors. See our <a href="/privacy" style="text-decoration:underline;text-underline-offset:3px">privacy policy</a>.</p>
         </form>
       </div>
     </section>
@@ -528,13 +535,14 @@
         <h3>Get started</h3>
         <a href="#faq">FAQ</a>
         <a href="#waitlist">Early access</a>
-        <a href="#waitlist">Free trial</a>
+        <a href="mailto:leads@stylemarking.com">Contact us</a>
         <a href="/locations/">Service areas</a>
       </nav>
     </div>
 
     <div class="container footer-legal">
       <p>&copy; 2026 RentShepherd. All rights reserved.</p>
+      <p><a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot; <a href="mailto:leads@stylemarking.com">leads@stylemarking.com</a></p>
       <p>Designed &amp; Built by <a href="https://stylemarking.com" rel="noopener">StyleMarking.com</a></p>
     </div>
   </footer>
