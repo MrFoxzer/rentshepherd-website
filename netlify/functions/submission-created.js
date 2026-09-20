@@ -1,22 +1,31 @@
-// Runs automatically on every VERIFIED Netlify form submission (waitlist form).
+// Netlify submission-created hook: pushes new waitlist signups to Jacob's phone.
 //
-// SECURITY: this repository is PUBLIC and ntfy.sh topics have no read
-// authentication, so the topic name below is effectively public and anyone
-// who reads it can subscribe. The push therefore carries NO personal data.
-// The lead's name and email live only in the Netlify Forms dashboard, which
-// is behind your account login.
+// SECURITY: an ntfy.sh topic is a bearer secret, not an identifier. ntfy.sh has
+// no read authentication on free topics — anyone who learns the string can
+// subscribe to https://ntfy.sh/<topic> and silently receive every lead forever.
+// This repository is PUBLIC, so the topic must never appear in source, in a
+// fallback, in a comment, or in a committed config file.
 //
-// Set NTFY_TOPIC in the Netlify UI to rotate onto a fresh topic; the value
-// below is the original and stays as a fallback so nothing breaks.
-const NTFY_TOPIC = process.env.NTFY_TOPIC || "rentshepherd-leads-5bbf16a3c8923db7";
+// Set NTFY_TOPIC in Netlify: Site configuration -> Environment variables.
+// There is deliberately NO fallback: if the variable is missing we skip the
+// push and log loudly, rather than leaking or guessing a topic.
+const NTFY_TOPIC = process.env.NTFY_TOPIC;
 
 exports.handler = async (event) => {
   try {
+    if (!NTFY_TOPIC) {
+      console.error(
+        "NTFY_TOPIC is not set — push notification skipped. " +
+        "Set it in Netlify: Site configuration -> Environment variables. " +
+        "The submission itself is still recorded in Netlify Forms."
+      );
+      return { statusCode: 200, body: "notify-skipped-no-topic" };
+    }
+
     const { payload } = JSON.parse(event.body);
     const form = payload.form_name || "unknown-form";
     const d = payload.data || {};
 
-    // Non-identifying context only. Never name, email, phone or free text.
     const safe = [];
     if (d.role) safe.push(`Role: ${String(d.role).slice(0, 40)}`);
     if (d["business-type"]) safe.push(`Business type: ${String(d["business-type"]).slice(0, 40)}`);

@@ -310,6 +310,26 @@ def pick(name, salt, options):
     return options[h % len(options)]
 
 
+def fit_pick(name, salt, options, lo, hi):
+    """Deterministically pick a rendered string whose length lands in [lo, hi].
+
+    Location names differ in length by 12+ characters, so a single fixed
+    template cannot keep every page inside Google's snippet window. Callers
+    hand in a pool of already-rendered candidates; we keep the ones that fit
+    and hash-select from those, so pages stay varied, regenerable, and unique
+    (every candidate embeds the location label).
+    """
+    ok = [o for o in options if lo <= len(o) <= hi]
+    if ok:
+        return pick(name, salt, ok)
+    under = [o for o in options if len(o) <= hi]
+    if under:
+        best = max(len(o) for o in under)
+        return pick(name, salt, [o for o in under if len(o) == best])
+    best = min(len(o) for o in options)
+    return pick(name, salt, [o for o in options if len(o) == best])
+
+
 def pick_n(name, salt, options, n):
     """Deterministic rotated sample of n options preserving variety."""
     h = int(hashlib.md5((name + "|" + salt).encode("utf-8")).hexdigest(), 16)
@@ -322,20 +342,67 @@ def pick_n(name, salt, options, n):
 # TEMPLATE POOLS (>=4 variants per section)
 # ---------------------------------------------------------------------------
 
-TITLES = [
-    "AI Property Management in {loc} — RentShepherd",
-    "AI Property Manager in {loc} — RentShepherd",
-    "Property Management Software in {loc} — RentShepherd",
-    "AI Property Management Platform in {loc} — RentShepherd",
+# Search snippets: titles are held to 50-60 chars and descriptions to
+# 140-155 so Google never truncates them mid-sentence. Location labels vary
+# by 12+ characters, so each pool spans a range of lengths and fit_pick()
+# selects a variant that lands in the window for that specific location.
+# Prices are deliberately absent here: the site is pre-launch and the
+# "planned pricing at launch" framing does not survive a 155-char snippet.
+TITLE_CONCEPTS = [
+    "AI Property Management",
+    "AI Property Manager",
+    "Property Management Software",
+    "AI Property Management Platform",
+    "AI Rental Management",
+    "Property Management AI",
 ]
 
-DESCRIPTIONS = [
-    "RentShepherd is the AI property manager for {loc} — 24/7 tenant call and text answering, repair triage, automatic rent payments, and owner reports. From $29/mo.",
-    "AI property management in {loc}: tenants answered around the clock, repairs triaged, rent collected automatically, lease renewals prepped. Now in early access.",
-    "{loc} landlords and property managers: put an AI on the front line — calls, texts, repairs, rent, and renewals handled 24/7 while approvals stay with you.",
-    "The all-in-one AI property management platform, available across {loc}. Tenant answering 24/7, work orders with photos, autopay rent, owner reports. $29–$149/mo.",
-    "Manage {loc} rentals without the 2am calls. RentShepherd answers tenants 24/7, triages repairs, auto-collects rent, and preps renewals. Join the early access list.",
+TITLE_TAGS = [
+    "24/7 Tenant Answering",
+    "Tenants Answered 24/7",
+    "Repairs, Rent, Renewals",
+    "For Landlords",
+    "Rent and Repairs Handled",
+    "Built for Landlords",
 ]
+
+TITLE_MIN, TITLE_MAX = 50, 60
+DESC_MIN, DESC_MAX = 140, 155
+
+
+def title_candidates(loc):
+    """Every candidate embeds `loc`, so titles stay unique across pages."""
+    out = []
+    for concept in TITLE_CONCEPTS:
+        out.append("%s in %s | RentShepherd" % (concept, loc))
+        out.append("%s for Landlords in %s | RentShepherd" % (concept, loc))
+        for tag in TITLE_TAGS:
+            out.append("%s in %s — %s | RentShepherd" % (concept, loc, tag))
+    return out
+
+
+DESCRIPTIONS = [
+    "AI property management for {loc}: tenants answered 24/7, repairs triaged, rent collected, renewals prepped. Join the early access list.",
+    "Manage {loc} rentals without the 2am calls. Tenants answered around the clock, repairs triaged, rent collected. Join the early access list.",
+    "{loc} landlords: put an AI on the front line. Calls and texts answered 24/7, repairs triaged, rent collected, renewals prepped. Early access.",
+    "RentShepherd is the AI property manager for {loc} — 24/7 tenant call and text answering, repair triage, rent collection and owner reports.",
+    "An AI property manager for {loc} rentals: tenant calls and texts answered 24/7, work orders with photos, autopay rent, renewals prepped.",
+    "AI property management in {loc}: tenants answered around the clock, repairs triaged, rent collected automatically, lease renewals prepped.",
+    "For {loc} landlords and property managers: 24/7 tenant answering, repair triage with photos, autopay rent and owner reports. Early access.",
+    "Self-manage {loc} rentals with an AI on call: tenants answered 24/7, repairs triaged, rent collected, renewals prepped. You approve everything.",
+    "{loc} rentals, handled: tenant calls and texts answered 24/7, work orders raised with photos, rent auto-collected, renewals prepped for you.",
+    "AI property management built for {loc} landlords. Tenants answered 24/7, repairs triaged, rent collected, renewals prepped, approvals yours.",
+    "Put an AI on your {loc} rentals: 24/7 tenant answering, repair triage, automatic rent collection, lease renewals. Join the early access list.",
+    "The AI property manager for {loc} landlords and property management companies: 24/7 tenant answering, repair triage, rent, renewals. Pre-launch.",
+    "AI property management for {loc} landlords and property managers: tenants answered 24/7, repairs triaged, rent collected, renewals prepped.",
+    "Every {loc} tenant call and text answered 24/7, every repair triaged with photos, rent collected automatically, renewals prepped. Early access.",
+    "RentShepherd puts an AI property manager on your {loc} rentals: 24/7 tenant calls and texts, repair triage, rent collection and lease renewals.",
+    "AI property management for {loc}: 24/7 tenant answering, repair triage with photos, automatic rent collection, owner reports. Join the early access list.",
+]
+
+
+def desc_candidates(loc):
+    return [d.format(loc=loc) for d in DESCRIPTIONS]
 
 EYEBROWS = [
     "Service area — {loc}",
@@ -827,8 +894,8 @@ def build_state_page(state):
     name, abbr, majors, neighbors, climate, market = state
     slug = STATE_SLUG[name]
     canonical = "%s/locations/%s" % (DOMAIN, slug)
-    title = pick(name, "title", TITLES).format(loc=name)
-    desc = pick(name, "desc", DESCRIPTIONS).format(loc=name)
+    title = fit_pick(name, "title", title_candidates(name), TITLE_MIN, TITLE_MAX)
+    desc = fit_pick(name, "desc", desc_candidates(name), DESC_MIN, DESC_MAX)
     c1, c2, c3 = majors[0], majors[1], majors[2]
 
     eyebrow = pick(name, "eyebrow", EYEBROWS).format(loc=name)
@@ -887,8 +954,8 @@ def build_city_page(city):
     loc = name
     label = "%s, %s" % (name, abbr)
     canonical = "%s/locations/%s" % (DOMAIN, slug)
-    title = pick(key, "title", TITLES).format(loc=label)
-    desc = pick(key, "desc", DESCRIPTIONS).format(loc=label)
+    title = fit_pick(key, "title", title_candidates(label), TITLE_MIN, TITLE_MAX)
+    desc = fit_pick(key, "desc", desc_candidates(label), DESC_MIN, DESC_MAX)
     n1, n2, n3 = hoods[0], hoods[1], hoods[2]
 
     eyebrow = pick(key, "eyebrow", EYEBROWS).format(loc=label)
@@ -958,10 +1025,9 @@ REGIONS = [
 
 def build_hub():
     canonical = DOMAIN + "/locations/"
-    title = "AI Property Management by Location — RentShepherd"
-    desc = ("Where RentShepherd works: AI property management for landlords and property "
-            "management companies in all 50 states and major rental markets from Minneapolis "
-            "to Miami. 24/7 tenant answering, repair triage, autopay rent. From $29/mo.")
+    title = "AI Property Management by State and Metro | RentShepherd"
+    desc = ("Where RentShepherd works: AI property management for landlords in all 50 states "
+            "and major rental markets. Tenants answered 24/7, repairs triaged.")
 
     city_links = [("%s, %s" % (c[0], c[1]), CITY_SLUG[(c[0], c[1])] + ".html") for c in CITIES]
     region_blocks = []
