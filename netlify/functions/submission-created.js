@@ -11,11 +11,14 @@
 // push and log loudly, rather than leaking or guessing a topic.
 const NTFY_TOPIC = process.env.NTFY_TOPIC;
 
-// Lead guard (_lib/lead-guard.js, shared by all of Jacob's sites): bots that
-// never ran the page's JavaScript (no `human` token from js/human-check.js),
-// foreign-language runs, "I wanted to know your price", adult/casino/SEO spam.
-// Anything it does not deliver gets no phone push; the submission itself is
-// still in the Netlify Forms dashboard for review.
+// Lead guard v2 (_lib/lead-guard.js + js/human-check.js, the same pair on all
+// of Jacob's sites). A post with no `human` token (a bot that never ran the
+// page's JavaScript) is dropped on any spam sign. A visitor who passed the
+// check is never dropped over wording a real customer could write: pitches,
+// links and odd phones only make it quiet. Only the honeypot, adult/drug spam
+// and non-English text drop a verified post. Only 'deliver' gets the phone
+// push; every submission, quiet ones included, stays in the Netlify Forms
+// dashboard for review.
 const { triage } = require("./_lib/lead-guard.js");
 
 // Fields that are not the visitor's own words, or are passed to triage() by name.

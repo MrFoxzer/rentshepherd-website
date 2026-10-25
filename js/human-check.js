@@ -54,6 +54,8 @@
       if (form.__humanReady) { form.__humanReady = false; return; }
       e.preventDefault();
       e.stopImmediatePropagation();
+      if (form.__humanPending) return;          // a double click while the token is being made
+      form.__humanPending = true;
       var email = form.querySelector('[name="email"]');
       var phone = form.querySelector('[name="phone"]');
       var input = form.querySelector('input[name="human"]');
@@ -65,8 +67,14 @@
       }
       token(email ? email.value : '', phone ? phone.value : '').then(function (t) {
         input.value = t;
-        form.__humanReady = true;
-        if (form.requestSubmit) form.requestSubmit(); else form.submit();
+        // Resubmit on a fresh task: the digest can finish before this submit
+        // event's dispatch does, and Chrome silently ignores requestSubmit()
+        // while a submit event is still firing (the first click did nothing).
+        setTimeout(function () {
+          form.__humanPending = false;
+          // submit() fires no submit event, so only requestSubmit() needs the pass.
+          if (form.requestSubmit) { form.__humanReady = true; form.requestSubmit(); } else form.submit();
+        }, 0);
       });
     }, true);
   }
