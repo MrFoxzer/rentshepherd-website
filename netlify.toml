@@ -1,5 +1,13 @@
+# Publish a filtered copy of the site, not the repo root. The root also holds
+# internal files (tools/, netlify.toml, function source), and Netlify serves
+# paths case-insensitively while redirect rules match case-sensitively, so the
+# 404! rules below alone left /Tools/... and /Netlify/functions/... readable
+# (found 2026-10-25). netlify/build-site.cjs hard-links every website file into
+# _site/ and leaves the internal ones out. If it fails, Netlify keeps the
+# current live deploy.
 [build]
-  publish = "."
+  command = "node netlify/build-site.cjs"
+  publish = "_site"
 
 [[headers]]
   for = "/*"
@@ -12,12 +20,12 @@
 [functions]
   directory = "netlify/functions"
 
-# SECURITY: with publish = "." the repo root IS the served site, so
-# netlify/functions/*.js was being served as readable static source at
-# /netlify/functions/<name>.js to anyone on the internet. The functions
-# themselves run at /.netlify/functions/<name> (note the leading dot) and are
-# unaffected by this rule. Verified 2026-09-19: these paths returned 200 with
-# full source. Do not remove.
+# SECURITY (second layer only, see [build] above): with publish = "." the repo
+# root was the served site, so netlify/functions/*.js was served as readable
+# static source at /netlify/functions/<name>.js. These rules match the exact
+# case only; the real fix is that _site/ no longer contains those files. The
+# functions themselves run at /.netlify/functions/<name> (note the leading
+# dot) and are unaffected by this rule. Do not remove.
 [[redirects]]
   from = "/netlify/*"
   to = "/404.html"

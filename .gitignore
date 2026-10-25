@@ -1,2 +1,4 @@
 # Local Netlify folder
 .netlify
+# Build output (netlify/build-site.cjs)
+_site/
