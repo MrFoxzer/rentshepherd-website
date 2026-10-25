@@ -11,6 +11,27 @@
 // push and log loudly, rather than leaking or guessing a topic.
 const NTFY_TOPIC = process.env.NTFY_TOPIC;
 
+// Lead guard (_lib/lead-guard.js, shared by all of Jacob's sites): bots that
+// never ran the page's JavaScript (no `human` token from js/human-check.js),
+// foreign-language runs, "I wanted to know your price", adult/casino/SEO spam.
+// Anything it does not deliver gets no phone push; the submission itself is
+// still in the Netlify Forms dashboard for review.
+const { triage } = require("./_lib/lead-guard.js");
+
+// Fields that are not the visitor's own words, or are passed to triage() by name.
+const NOT_TEXT = new Set(["name", "email", "phone", "message", "human", "bot-field", "form-name", "ip", "user_agent", "referrer"]);
+
+function leadGuard(d) {
+  const text = Object.entries(d)
+    .filter(([k, v]) => !NOT_TEXT.has(k) && typeof v === "string")
+    .map(([, v]) => v)
+    .join("\n");
+  return triage(
+    { name: d.name, email: d.email, phone: d.phone, message: d.message, text },
+    { human: d.human, honeypot: d["bot-field"], nonEnglish: "drop" }
+  );
+}
+
 exports.handler = async (event) => {
   try {
     if (!NTFY_TOPIC) {
@@ -25,6 +46,12 @@ exports.handler = async (event) => {
     const { payload } = JSON.parse(event.body);
     const form = payload.form_name || "unknown-form";
     const d = payload.data || {};
+
+    const guard = leadGuard(d);
+    if (guard.action !== "deliver") {
+      console.log(`lead guard: ${guard.action} (${guard.reason}), form ${form}: no push`);
+      return { statusCode: 200, body: `guard-${guard.action}` };
+    }
 
     const safe = [];
     if (d.role) safe.push(`Role: ${String(d.role).slice(0, 40)}`);

@@ -121,8 +121,9 @@
           <p>Join the early access list. We&rsquo;ll email you when access opens, and we&rsquo;ll only email you about RentShepherd.</p>
         </div>
 
-        <form name="waitlist" method="POST" action="/thank-you" data-netlify="true" data-netlify-honeypot="bot-field" class="waitlist-form">
+        <form name="waitlist" method="POST" action="/thank-you" data-netlify="true" data-human-check data-netlify-honeypot="bot-field" class="waitlist-form">
           <input type="hidden" name="form-name" value="waitlist">
+          <input type="hidden" name="human">
           <p class="hp-field" aria-hidden="true">
             <label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
           </p>
@@ -196,6 +197,7 @@
     </div>
   </footer>
 
+  <script src="/js/human-check.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
